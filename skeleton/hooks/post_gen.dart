@@ -13,6 +13,9 @@ void run(HookContext context) async{
   await Process.run('flutter', ['pub','add','equatable']);
   await Process.run('flutter', ['pub','add','dartz']);
   await Process.run('flutter', ['pub','get']);
+  final build_runner=context.logger.progress('Running Build Runner');
+  await Process.run('flutter', ['pub','run','build_runner','build','--delete-conflicting-outputs']);
+  build_runner.complete();
   progress.complete();
   
 }
